@@ -20,5 +20,5 @@ def send(id, text):
 def base(update):
     #send(update['message']['from']['id'], str(update))
     #send(update['message']['from']['id'], "Hello " + update['message']['from']['first_name'] + "\nUp and running on "+system+" !")
-    send(update['message']['from']['id'], "Version 4")
+    send(update['message']['from']['id'], "Version 5")
     return 'ok'
