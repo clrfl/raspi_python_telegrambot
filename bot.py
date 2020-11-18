@@ -5,13 +5,11 @@ import urllib2
 import platform
 import os
 
-BASE_URL = config.BASE_URL
-
 system = str(platform.system())+" - "+str(os.name) + " ver " + str(platform.release())
 
 
 def send(id, text):
-    resp = urllib2.urlopen(BASE_URL + 'sendMessage', urllib.urlencode({
+    resp = urllib2.urlopen(config.BASE_URL + 'sendMessage', urllib.urlencode({
         'chat_id' : id,
         'text': text.encode('utf-8'),
         })).read()
