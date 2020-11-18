@@ -1,3 +1,7 @@
+# this script runs the python flask and ssl functionalities
+# sensitive data are conceiled in config.py module
+# further telegram bot functionalities are imported from bot.py module
+
 import config
 import bot
 import imp
@@ -30,19 +34,20 @@ def index():
 def respond():
     try:
         update = request.get_json()
+
         if (str(update['message']['from']['id']) == config.MY_ID and update['message']['text'] == '/reload'):
-
-            filedata = urllib2.urlopen(config.SOURCE_URL)
-            datatowrite = filedata.read()
-            with open('/restricted/directory/bot.py', 'wb') as f:
-                f.write(datatowrite)
-
+            data = urllib2.urlopen(config.SOURCE_URL).read()
+            with open('bot.py', 'wb') as f:
+                f.write(data)
             imp.reload(bot)
             debug("reloaded")
+
         else:
             bot.base(update)
+
     except Exception as e:
         debug(str(e))
+
     finally:
         return 'done'
 
